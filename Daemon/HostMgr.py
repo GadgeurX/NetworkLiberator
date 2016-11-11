@@ -24,7 +24,7 @@ class HostMgr(Thread):
         for host in self.hosts:
             if host.ip == ip:
                 return True
-            return False
+        return False
     
     def diselect_all(self):
         for host in self.hosts:

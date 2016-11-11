@@ -13,4 +13,4 @@ Small network tool
 - Save
 - And more
 
-![screen](/assets/screen.png)
+![screen](/Gui/Assets/screen.png)

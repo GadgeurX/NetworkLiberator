@@ -34,3 +34,9 @@ class HostMgr(Thread):
         for host in self.hosts:
             if host.ip == ip:
                 host.is_selected = True
+
+    def get_host(self, mac):
+        for host in self.hosts:
+            if host.mac == mac:
+                return host
+        return None

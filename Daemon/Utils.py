@@ -11,6 +11,7 @@ for inter in netifaces.interfaces():
         local_ip = addrs[netifaces.AF_INET][0]["addr"]
         broadcast = addrs[netifaces.AF_INET][0]["broadcast"]
         netmask = addrs[netifaces.AF_INET][0]["netmask"]
+        mac = addrs[netifaces.AF_LINK][0]["addr"]
         gws = netifaces.gateways()
         gateway = gws['default'][netifaces.AF_INET][0]
         interface = inter
@@ -35,3 +36,7 @@ def get_all_ips():
 def get_gateway():
     global gateway
     return gateway
+
+def get_mac():
+    global mac
+    return mac

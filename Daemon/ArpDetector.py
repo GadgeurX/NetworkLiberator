@@ -45,7 +45,11 @@ class ArpDetector(Thread):
             if (replies_count[mac] > request_threshold):
                 print("attack")
                 replies_count[mac] = -50
-                self.issue_os_notification("ARP Spoofing Detected", "ARP Spoofing Attack Detected from {}.".format(mac))
+                host = self.main.HostMgr.get_host(mac)
+                if host is not None:
+                    self.issue_os_notification("ARP Spoofing Detected", "ARP Spoofing Attack Detected from " + host.ip + " (" + mac + ").")
+                else:
+                    self.issue_os_notification("ARP Spoofing Detected", "ARP Spoofing Attack Detected from " + mac + ".")
         else:
             if source in requests:
                 requests.remove(source)
@@ -56,6 +60,8 @@ class ArpDetector(Thread):
         dest = packet.sprintf("%ARP.pdst%")
         source_mac = packet.sprintf("%ARP.hwsrc%")
         operation = packet.sprintf("%ARP.op%")
+        if source_mac == Utils.get_mac():
+            return
         if source == Utils.get_lan_ip():
             requests.append(dest)
         if operation == 'is-at':

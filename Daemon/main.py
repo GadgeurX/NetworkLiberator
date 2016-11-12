@@ -12,11 +12,13 @@ from ArpDetector import ArpDetector
 from HostMgr import HostMgr
 from NetworkScanner import NetworkScanner
 from AttackProcess import AttackProcess
+import nmap
 
 class Main():
 
     def __init__(self):
         
+        self.nm = nmap.PortScanner()
         self.HostMgr = HostMgr(self)
         self.HostMgr.start()
 

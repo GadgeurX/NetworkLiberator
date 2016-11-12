@@ -28,6 +28,6 @@ class NetworkScanner(Thread):
             if not self.main.HostMgr.has_host(ip):
                 mac = get_mac(ip, timeout, retry)
                 if mac is not None:
-                    host = Host(ip, mac)
+                    host = Host(self.main, ip, mac)
                     host.start()
                     self.main.HostMgr.append_host(host)

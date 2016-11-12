@@ -10,7 +10,7 @@ class AttackWindow(Gtk.Window):
         self.listbox = Gtk.ListBox()
         self.main = main
         self.set_visible(False)
-        self.list_host_store = Gtk.ListStore(str, str, str)
+        self.list_host_store = Gtk.ListStore(str, str, str, str)
 
         self.list_host_view = Gtk.TreeView(self.list_host_store)
 
@@ -26,6 +26,9 @@ class AttackWindow(Gtk.Window):
         self.list_host_view.append_column(column)
 
         column = Gtk.TreeViewColumn("Host Vendor", renderer, text=2)
+        self.list_host_view.append_column(column)
+
+        column = Gtk.TreeViewColumn("Host Os", renderer, text=3)
         self.list_host_view.append_column(column)
         
 

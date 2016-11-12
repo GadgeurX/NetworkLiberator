@@ -36,7 +36,6 @@ class Server(Thread):
                     pdata = CSocket.recv(1024)
                     PPacket = self.process_data(pdata)
                     if PPacket is not None:
-                        print(PPacket)
                         packet = Packet.get_unpickled_packet(PPacket)
                         PacketProcess.process_packet(packet, self.main)
             while len(self.queue) > 0:

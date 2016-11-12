@@ -13,11 +13,8 @@ def receive_hosts(packet, main):
 
         remove = True
         for host_data in packet.data:
-            if row[0] == host_data["ip"]:
+            if row[0] == host_data["ip"] and row[1] == host_data["mac"] and row[2] == host_data["vendor"] and row[3] == host_data["os"]:
                 remove = False
-                #if not is_select:
-                 #   row[1] = host_data["mac"]
-                  #  row[2] = host_data["vendor"]
         if remove and not is_select:
             main.AttackWindow.list_host_store.remove(row.iter)
 
@@ -27,7 +24,7 @@ def receive_hosts(packet, main):
             if row[0] == host_data["ip"]:
                 append = False
         if append:
-            main.AttackWindow.list_host_store.append([host_data["ip"], host_data["mac"], host_data["vendor"]])
+            main.AttackWindow.list_host_store.append([host_data["ip"], host_data["mac"], host_data["vendor"], host_data["os"]])
 
 
 ### DAEMON ###

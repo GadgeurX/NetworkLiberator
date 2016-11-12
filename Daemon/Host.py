@@ -18,7 +18,7 @@ class Host(Thread):
         self.mac = mac
         self.vendor = "Unknown"
         self.packet = ARP()
-        self.packet.timeout = 0.100
+        self.packet.timeout = 2.000
         self.packet.op = 2
         self.packet.psrc = Utils.get_gateway()
         self.packet.pdst = ip

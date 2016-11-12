@@ -19,9 +19,9 @@ class AppIndicator(Thread):
         self.indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
         self.menu = Gtk.Menu()
         self.item_quit = Gtk.MenuItem('Close')
-        self.item_quit.connect('activate', quit)
+        self.item_quit.connect('activate', self.quit)
 
-        self.item_attack_window = Gtk.MenuItem('Attack...')
+        self.item_attack_window = Gtk.MenuItem('ARP Spoofing')
         self.item_attack_window.connect('activate', self.open_attack_window)
 
         self.menu.append(self.item_attack_window)
@@ -43,5 +43,6 @@ class AppIndicator(Thread):
     def open_attack_window(self,source):
         AttackWindow.show(self.main.AttackWindow)
 
-def quit(source):
-    Gtk.main_quit()
+    def quit(self, source):
+        self.main.AttackWindow.destroy()
+        Gtk.main_quit()
